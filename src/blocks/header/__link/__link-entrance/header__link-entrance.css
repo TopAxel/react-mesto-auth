@@ -1,0 +1,25 @@
+.header__link-entrance {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.22;
+    margin-top: 6px;
+    outline: none;
+    cursor: pointer;
+}
+
+
+.header__link-entrance:hover {
+    opacity: .6;
+    transition: all .1s ease-in
+}
+
+@media screen and (max-width: 670px) {
+    .header__link-entrance {
+        margin-right: 30px;
+        font-size: 14px;
+        line-height: 1.21;
+    }
+}

@@ -1,0 +1,82 @@
+body {
+    background-color: #000000;
+  }
+
+/* normalize */
+@import url(./vendor/normalize.css);
+/* fonts шрифиы */
+@import url(./vendor/fonts/fonts.css);
+/* page страница */
+@import url(./blocks/page/page.css);
+/* conteiner */
+@import url(./blocks/page/__conteiner/page__conteiner.css);
+/* header */
+@import url(./blocks/header/header.css);
+@import url(./blocks/header/__logo/header__logo.css);
+@import url(./blocks/header/__text/header__text.css);
+@import url(./blocks/header/__link/header__link.css);
+@import url(./blocks/header/__auth/header__auth.css);
+@import url(./blocks/header/__burger/header__burger.css);
+@import url(./blocks/header/__burger/__burger-line/header__burger-line.css);
+@import url(./blocks/header/__burger/__burger-open/header__burger-open.css);
+@import url(./blocks/header/__auth/__auth-open/header__auth-open.css);
+@import url(./blocks/header/__auth/__auth-active/header__auth-active.css);
+@import url(./blocks/header/__link/__link-entrance/header__link-entrance.css);
+/* profile */
+@import url(./blocks/profile/profile.css);
+@import url(./blocks/profile/__avatar/profile__avatar.css);
+@import url(./blocks/profile/__info/profile__info.css);
+@import url(./blocks/profile/__title/prifile__title.css);
+@import url(./blocks/profile/__edit-button/profile__edit-button.css);
+@import url(./blocks/profile/__subtitle/profile__subtitle.css);
+@import url(./blocks/profile/__add-button/profile__add-button.css);
+@import url(./blocks/profile/__avatar-button/profile__avatar-button.css);
+/* elements */
+@import url(./blocks/elements/elements.css);
+/* element */
+@import url(./blocks/element/element.css);
+@import url(./blocks/element/__card/element__card.css);
+@import url(./blocks/element/__photo/element__photo.css);
+@import url(./blocks/element/__title/element__title.css);
+@import url(./blocks/element/__like-icon/element__like-icon.css);
+@import url(./blocks/element/__like-icon/_active/element__like-icon_active.css);
+@import url(./blocks/element/__delete/element__delete-icon.css);
+@import url(./blocks/element/__delete/_active/element__delete-icon_active.css);
+@import url(./blocks/element/__like-counter/element__like-counter.css);
+@import url(./blocks/element/__like-box/element__like-box.css);
+/* footer */
+@import url(./blocks/footer/footer.css);
+@import url(./blocks/footer/__other/footer__other.css);
+/* popup */
+@import url(./blocks/popup/popup.css);
+@import url(./blocks/popup/__conteiner/popup__conteiner.css);
+@import url(./blocks/popup/__close-icon/popup__close-icon.css);
+@import url(./blocks/popup/_opened/popup_opened.css);
+@import url(./blocks/popup/__conteiner-image/popup__conteiner-image.css);
+@import url(./blocks/popup/__status/popup__status.css);
+@import url(./blocks/popup/__message/popup__message.css);
+@import url(./blocks/popup/__info/popup__info.css);
+/* popup открытая картинка */
+@import url(./blocks/opened-image/opened-image.css);
+@import url(./blocks/opened-image/__image/opened-image__image.css);
+@import url(./blocks/opened-image/__signature/opened-image__signature.css);
+/* form */
+@import url(./blocks/form/form.css);
+@import url(./blocks/form/__title/form__title.css);
+@import url(./blocks/form/__edit/form__edit.css);
+@import url(./blocks/form/__field/form__field.css);
+@import url(./blocks/form/__submit-button/form__submit-button.css);
+@import url(./blocks/form/__field/_type_error/form__field_type_error.css);
+@import url(./blocks/form/__field-error/form__field-error.css);
+@import url(./blocks/form/__field-error/_active/form__field-error_active.css);
+@import url(./blocks/form/__submit-button/_disablet/form__submit-button_disabled.css);
+@import url(./blocks/form/__submit-button/_hover/form__submit-button_hover.css);
+/* registration */
+@import url(./blocks/registration/registration.css);
+@import url(./blocks/registration/__title/registration__title.css);
+@import url(./blocks/registration/__text/registration__text.css);
+@import url(./blocks/registration/__submit-button/registration__submit-button.css);
+@import url(./blocks/registration/__link/registration__link.css);
+@import url(./blocks/registration/__form/registration__form.css);
+@import url(./blocks/registration/__field/registration__field.css);
+

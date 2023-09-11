@@ -1,0 +1,19 @@
+.header__burger-open .header__burger-line:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 8.5px);
+}
+
+.header__burger-open .header__burger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.header__burger-open .header__burger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -6.5px);
+}
+
+.header__burger-open::before {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.header__burger-open::after {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
