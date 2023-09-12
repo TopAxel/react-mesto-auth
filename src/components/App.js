@@ -15,7 +15,7 @@ import ProtectedRoute from './ProtectedRoute.js';
 import Register from './Register.js';
 import Login from './Login.js';
 import InfoTooltip from './InfoTooltip.js';
-import * as Auth from '../utils/Auth.js';
+import * as Auth from '../utils/Auth.js'
 import mistake from '../image/mistake/mistake.svg'
 import successfully from '../image/successfully/successfully.svg'
 
@@ -28,47 +28,54 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [cards, setCards] = React.useState([]);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [emailName, setEmailName] = React.useState(null);
-  const [popupImage, setPopupImage] = React.useState("");
-  const [popupTitle, setPopupTitle] = React.useState("");
-  const [infoTooltip, setInfoTooltip] = React.useState(false);
-  
+  const [emailName, setEmailName] = React.useState("");
+  const [tooltipImage, setPopupImage] = React.useState("");
+  const [tooltipTitle, setPopupTitle] = React.useState("");
+  const [isTooltipOpen, setInfoTooltip] = React.useState(false);
+
 
   function onRegister(email, password) {
-    Auth.registerUser(email, password).then(() => {
-      setPopupImage(successfully);
-      setPopupTitle("Вы успешно зарегистрировались!");
-      navigate("/sign-in");
-    }).catch(() => {
-      setPopupImage(mistake);
-      setPopupTitle("Что-то пошло не так! Попробуйте ещё раз.");
-    }).finally(handleInfoTooltip);
+    Auth.registerUser(email, password)
+      .then(() => {
+        setPopupImage(successfully);
+        setPopupTitle("Вы успешно зарегистрировались!");
+        navigate("/sign-in");
+      })
+      .catch(() => {
+        setPopupImage(mistake);
+        setPopupTitle("Что-то пошло не так! Попробуйте ещё раз.");
+      })
+      .finally(handleInfoTooltip);
   }
 
   function onLogin(email, password) {
-    Auth.loginUser(email, password).then((res) => {
-      localStorage.setItem("jwt", res.token);
-      setIsLoggedIn(true);
-      setEmailName(email);
-      navigate("/");
-    }).catch(() => {
-      setPopupImage(mistake);
-      setPopupTitle("Что-то пошло не так! Попробуйте ещё раз.");
-      handleInfoTooltip();
-    });
+    Auth.loginUser(email, password)
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        setIsLoggedIn(true);
+        setEmailName(email);
+        navigate("/");
+      })
+      .catch(() => {
+        setPopupImage(mistake);
+        setPopupTitle("Что-то пошло не так! Попробуйте ещё раз.");
+        handleInfoTooltip();
+      });
   }
 
   React.useEffect(() => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
-      Auth.getToken(jwt).then((res) => {
-        if (res) {
-          setIsLoggedIn(true);
-          setEmailName(res.data.email);
-        }
-      }).catch((err) => {
-        console.error(err);
-      });
+      Auth.checkToken(jwt)
+        .then((res) => {
+          if (res) {
+            setIsLoggedIn(true);
+            setEmailName(res.data.email);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     }
   }, []);
 
@@ -114,14 +121,16 @@ function App() {
 
   // Выполняем запрос к API для получения информации о текущем пользователе
   React.useEffect(() => {
-    api.getUserInfo()
-      .then((userData) => {
-        setCurrentUser(userData);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    if (isLoggedIn) {
+      api.getUserInfo()
+        .then((userData) => {
+          setCurrentUser(userData);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [isLoggedIn]);
 
   // редактирование данных пользователя 
   const handleUpdateUser = (updatedUser) => {
@@ -150,15 +159,16 @@ function App() {
 
   //при загрузке страницы получаем данные карточек
   React.useEffect(() => {
-    api.getInitialCards()
-      .then((data) => {
-        setCards(data);
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }, []);
-
+    if (isLoggedIn) {
+      api.getInitialCards()
+        .then((data) => {
+          setCards(data);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
+  }, [isLoggedIn]);
 
 
   // установка и снятия лайка
@@ -214,7 +224,7 @@ function App() {
 
   function onSignOut() {
     setIsLoggedIn(false);
-    setEmailName(null);
+    setEmailName("");
     navigate("/sign-in");
     localStorage.removeItem("jwt");
   }
@@ -280,9 +290,9 @@ function App() {
             onClose={closeAllPopups}
             onOverlayClose={handleOverlayClickClose} />
           <InfoTooltip
-            image={popupImage}
-            title={popupTitle}
-            isOpen={infoTooltip}
+            image={tooltipImage}
+            title={tooltipTitle}
+            isOpen={isTooltipOpen}
             onClose={closeAllPopups}
             onOverlayClose={handleOverlayClickClose}
           />
